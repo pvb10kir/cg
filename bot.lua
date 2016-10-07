@@ -1,5 +1,5 @@
 local redis = (loadfile "./libs/redis.lua")()
-local token = arg[1] or "214922091:AAFPFcDXjqR0yuJYNuFlp-xAKDT8JKy5WvU"
+local token = arg[1] or "271857798:AAHd7vqHLuKsatSqMAtElNF71Tu0rTJ1nbQ"
 local bot, extension = require("lua-bot-api").configure(token)
 extension.onInlineQueryReceive = function (qmsg)
 	local photo1_url = 'http://uupload.ir/files/k3sv_sd.png'
