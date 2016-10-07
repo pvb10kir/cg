@@ -58,9 +58,22 @@ local names = redis:hkeys(ahash)
 end
 	elseif string.match(msg.text, "^[!/#]adduser$") then
 		 if msg.from.username == 'MrBlackLife' then
-			redis:hset(ahash, msg.from.id, 'newuser')
-			bot.sendMessage(msg.from.id, '1 نفر به لیستت اضافه شد')
+		local hash = 'juser:'..msg.from.id
+		local fhash = 'juser:'..string.sub(msg.text, 8)
+		local fchash = 'cuser:'..string.sub(msg.text, 8)
+		local chash = 'cuser:'..msg.from.id
+		if not redis:get(hash) then
+    	redis:set(hash,true)
+    	redis:set(chash,0)
+ local ahash = 'tiagoh:users'
+        redis:hset(ahash, msg.from.id, 'newuser')
+    	bot.sendMessage(msg.chat.id, ".added")
+    	if redis:get(fhash) then
+    	redis:incr(fchash)
+bot.sendMessage(msg.chat.id, " به دوست شما برای ورود شما یک امتیاز داده شد :|")
 				end
+				end
+			end
 	elseif string.match(msg.text, "^[!/#]mylink$") or msg.text == 'لینک من' then
 		local chash = 'cuser:'..msg.from.id
 		local hash = 'juser:'..msg.from.id
