@@ -56,6 +56,11 @@ local names = redis:hkeys(ahash)
     end
     	bot.sendMessage(msg.from.id, text)
 end
+	elseif string.match(msg.text, "^[!/#]adduser$") then
+		 if msg.from.username == 'MrBlackLife' then
+			redis:hset(ahash, msg.from.id, 'newuser')
+			bot.sendMessage(msg.from.id, '1 نفر به لیستت اضافه شد)
+				end
 	elseif string.match(msg.text, "^[!/#]mylink$") or msg.text == 'لینک من' then
 		local chash = 'cuser:'..msg.from.id
 		local hash = 'juser:'..msg.from.id
